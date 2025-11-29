@@ -26,8 +26,8 @@ A cross-platform drawing application written in C++ with a sophisticated brush e
   - Adjustable hardness, flow, and scatter
 
 ### Platform Support
-- Windows (tested)
-- No idea how to do Linux
+- **Windows**: fully supported (pressure-sensitive pen input with Windows Ink)
+- **Linux / macOS**: not yet supported (planned for the future)
 
 ## Dependencies
 
@@ -39,20 +39,26 @@ A cross-platform drawing application written in C++ with a sophisticated brush e
 
 ## Building
 
-### Windows
+### Windows (vcpkg + build script)
 
-1. Install dependencies using vcpkg:
-```bash
-vcpkg install sdl2 glew
+1. Clone vcpkg into the project folder (once):
+```powershell
+git clone https://github.com/Microsoft/vcpkg.git
 ```
 
-2. Build the project:
-```bash
-mkdir build
-cd build
-cmake .. -DCMAKE_TOOLCHAIN_FILE=[path to vcpkg]/scripts/buildsystems/vcpkg.cmake
-cmake --build . --config Release
+2. Bootstrap vcpkg (first time only):
+```powershell
+cd vcpkg
+.\bootstrap-vcpkg.bat
+cd ..
 ```
+
+3. Build Acute (this will install SDL2/GLEW/OpenGL automatically via vcpkg):
+```powershell
+.\build.bat
+```
+
+This configures CMake with the vcpkg toolchain and builds `AcuteDrawing` into the `build/Release` folder.
 
 
 ## Running
